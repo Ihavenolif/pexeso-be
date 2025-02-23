@@ -13,6 +13,11 @@ class NetworkManager
         menu.CreateLobby(name);
     }
 
+    public void DeleteLobby(int id)
+    {
+        menu.DeleteLobby(id);
+    }
+
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
     public static NetworkManager Singleton { get; private set; }
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.

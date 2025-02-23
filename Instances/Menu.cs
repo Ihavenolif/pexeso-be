@@ -9,6 +9,11 @@ class Menu : Instance
         lobbies.Add(lobby.id, lobby);
     }
 
+    public void DeleteLobby(int id)
+    {
+        lobbies.Remove(id);
+    }
+
     public override void HandleMessage(Client fromClient, Message message)
     {
         switch (message)

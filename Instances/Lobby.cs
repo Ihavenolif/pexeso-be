@@ -68,6 +68,7 @@ class Lobby : Instance
 
         if (!allReady) return;
 
+        int lobbyId = ((Lobby)fromClient.instance).id;
         Game game = new Game(clients, spectators, this.id);
 
         foreach (Client client in clients)
@@ -92,5 +93,6 @@ class Lobby : Instance
             client.Send(response);
         }
 
+        NetworkManager.Singleton.DeleteLobby(lobbyId);
     }
 }
