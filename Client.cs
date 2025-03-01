@@ -54,6 +54,9 @@ class Client
             case MessageType.CardClicked:
                 message = JsonConvert.DeserializeObject<CardClickedMessage>(messageReceiver.data);
                 break;
+            case MessageType.GamePaused:
+                message = new GamePausedMessage();
+                break;
             default:
                 Console.WriteLine($"Received invalid message from client {this.connection.ConnectionInfo.Id}.");
                 return;

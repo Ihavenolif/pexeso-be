@@ -12,6 +12,7 @@ class Game : Instance
     bool allDpsPicked = false;
 
     bool pickingLocked = false;
+    bool paused = false;
 
     int playerOnTurn = 0;
     int? cardRevealed = null;
@@ -37,13 +38,16 @@ class Game : Instance
             case CardClickedMessage toggleReadyMessage:
                 HandleCardClicked(fromClient, toggleReadyMessage);
                 break;
+            case GamePausedMessage gamePausedMessage:
+                HandleGamePaused(fromClient, gamePausedMessage);
+                break;
 
         }
     }
 
     void HandleCardClicked(Client fromClient, CardClickedMessage cardClickedMessage)
     {
-        if (pickingLocked)
+        if (pickingLocked || paused)
         {
             return;
         }
@@ -80,6 +84,28 @@ class Game : Instance
             character.wowClass,
             character.wowRole
         );
+
+        foreach (Client client in clients)
+        {
+            client.Send(response);
+        }
+
+        foreach (Client client in spectators)
+        {
+            client.Send(response);
+        }
+    }
+
+    void HandleGamePaused(Client fromClient, GamePausedMessage gamePausedMessage)
+    {
+        if (!spectators.Contains(fromClient))
+        {
+            return;
+        }
+
+        paused = !paused;
+
+        Response response = new GamePausedResponse(paused);
 
         foreach (Client client in clients)
         {

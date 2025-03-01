@@ -11,5 +11,6 @@ enum MessageType : ushort
     JoinAsSpectator,
     StartGame,
     CardClicked,
-    TurnEvaluation
+    TurnEvaluation,
+    GamePaused
 }
