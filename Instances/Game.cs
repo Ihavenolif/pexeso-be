@@ -446,6 +446,7 @@ class Game : Instance
         list.Add(new Character("Kaprdh", WowClass.DemonHunter, WowRole.Tank, characterId++));
         list.Add(new Character("Rolash", WowClass.DeathKnight, WowRole.DPS, characterId++));
         list.Add(new Character("Yungchrist", WowClass.Monk, WowRole.DPS, characterId++));
+        list.Add(new Character("Gudina", WowClass.Druid, WowRole.Healer, characterId++));
 
 
         return list;
